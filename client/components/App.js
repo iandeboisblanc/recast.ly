@@ -10,10 +10,9 @@ class App extends React.Component {
   }
 
   onVideoListSelect(videoObj) {
-    console.log('yo');
     this.setState({
-      currentVideo: window.exampleVideoData[2],
-      currentVideoList: window.exampleVideoData
+      currentVideo: videoObj,
+      currentVideoList: window.exampleVideoData 
     });
   }
 
@@ -30,7 +29,6 @@ class App extends React.Component {
       </div>
     )
   }
-
 }
 
 
