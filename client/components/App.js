@@ -9,3 +9,6 @@ var App = () => (
     </div>
   </div>
 );
+
+
+window.App = App;
