@@ -2,7 +2,7 @@ var VideoPlayer = (props) => (
   <div className="video-player">
     <div className="embed-responsive embed-responsive-16by9">
       <iframe className="embed-responsive-item" 
-        src={"https://www.youtube.com/embed/" + props.videoObj.id.videoId} 
+        src={"https://www.youtube.com/embed/" + props.videoObj.id.videoId + "?autoplay=1"} 
         allowFullScreen>
       </iframe>
     </div>

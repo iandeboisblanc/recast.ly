@@ -11,8 +11,7 @@ class App extends React.Component {
 
   onVideoListSelect(videoObj) {
     this.setState({
-      currentVideo: videoObj,
-      currentVideoList: window.exampleVideoData 
+      currentVideo: videoObj
     });
   }
 
