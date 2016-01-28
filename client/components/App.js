@@ -4,8 +4,8 @@ class App extends React.Component {
     super()
   
     this.state = {
-      currentVideo: window.exampleVideoData[0],
-      currentVideoList: window.exampleVideoData
+      currentVideo: {},
+      currentVideoList: {}
     }
   }
 
@@ -16,15 +16,36 @@ class App extends React.Component {
     });
   }
 
+  onSearchValueChange(event) {
+    // call ajax here
+    // on success...
+    console.log('searching...',event.target.value);
+      // this.setState({
+      //   currentVideoList:string  
+      // });
+  }
+
   render() {
+
+    var videolist = <div/>;
+    var videoplayer = <div />
+
+    if(this.state.currentVideo.snippet) {
+      videoplayer = <VideoPlayer videoObj={this.state.currentVideo} />
+    }
+
+    if(this.state.currentVideoList[0]) {
+      videolist =  <VideoList videoListObj={this.state.currentVideoList} onVideoListSelect={this.onVideoListSelect.bind(this)} />
+    }
+
     return (
       <div>
-        <Nav />
+        <Nav onSearchValueChange={this.onSearchValueChange.bind(this)} />
         <div className="col-md-7">
-          <VideoPlayer videoObj={this.state.currentVideo} />
+          {videoplayer}
         </div>
         <div className="col-md-5">
-          <VideoList videoListObj={this.state.currentVideoList} onVideoListSelect={this.onVideoListSelect.bind(this)} />
+          {videolist}
         </div>
       </div>
     )
