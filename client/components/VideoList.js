@@ -1,6 +1,7 @@
-var VideoList = () => (
+var VideoList = (props) => (
   <div className="video-list media">
-    { window.exampleVideoData.map( (videoObj) => ( <VideoListEntry videoObj={videoObj} /> )) }
+    { props.videoListObj.map( (videoObj) => 
+        ( <VideoListEntry videoObj={videoObj} onVideoListSelect={props.onVideoListSelect} /> )) }
   </div>
 );
 
