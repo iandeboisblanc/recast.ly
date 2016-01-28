@@ -3,19 +3,13 @@ var searchYouTube = (options, callback) => {
 
   // parse the object here
 
-  options = options || {
-    query: 'dogs',
-    max: 5,
-    key: window.YOUTUBE_API_KEY ,
-    videoEmbeddable: true
-  };
 
   $.ajax({
     url: "https://www.googleapis.com/youtube/v3/search",
     type: "GET",
     data: options,
     success: function(data) {
-      console.log('success');
+      console.log('success', data);
       callback(data);
     },
     failure: function() {
@@ -26,4 +20,6 @@ var searchYouTube = (options, callback) => {
 
 };
 
-window.searchYouTube = searchYouTube;
+var throttledSearchYouTube = _.throttle(searchYouTube,400);
+
+window.searchYouTube = throttledSearchYouTube;

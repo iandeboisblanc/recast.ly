@@ -17,12 +17,22 @@ class App extends React.Component {
   }
 
   onSearchValueChange(event) {
-    // call ajax here
-    // on success...
     console.log('searching...',event.target.value);
-      // this.setState({
-      //   currentVideoList:string  
-      // });
+    var optionsObj = {
+      q:event.target.value,
+      max: 5,
+      key: YOUTUBE_API_KEY,
+      videoembeddable: true,
+      part:"snippet"
+    };
+
+    var callback = function(data) {
+      this.setState({
+        currentVideoList: data.items
+      });
+    };
+
+    window.searchYouTube(optionsObj, callback.bind(this));
   }
 
   render() {
@@ -35,7 +45,8 @@ class App extends React.Component {
     }
 
     if(this.state.currentVideoList[0]) {
-      videolist =  <VideoList videoListObj={this.state.currentVideoList} onVideoListSelect={this.onVideoListSelect.bind(this)} />
+      videolist =  <VideoList videoListObj={this.state.currentVideoList} 
+                    onVideoListSelect={this.onVideoListSelect.bind(this)} />
     }
 
     return (
